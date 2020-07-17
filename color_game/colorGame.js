@@ -9,6 +9,7 @@ const colors = [
 
 const squares = document.querySelectorAll(".square");
 const targetColorEl = document.getElementById("targetColor");
+const messageEl = document.getElementById("message")
 const targetColor = colors[0];
 targetColorEl.textContent = targetColor;
 
@@ -20,8 +21,23 @@ for (let i = 0; i < squares.length; i++) {
 function check(event) {
   console.log(event);
   if (this.style.backgroundColor === targetColor) {
-    alert("Congratulation! You picked the correct one.")
+    removeEventListener();
+    changeAllColor(targetColor);
+    messageEl.textContent = "Congratulation! You picked the correct one.";
   } else {
-    alert("Wrong Color, try agains.")
+    messageEl.textContent = "Try Again"
+    this.style.backgroundColor = "#232323";
+  }
+}
+
+function removeEventListener() {
+  for (let i = 0; i < squares.length; i++) {
+    squares[i].removeEventListener("click", check);
+  }
+}
+
+function changeAllColor(color) {
+  for (let i = 0; i < squares.length; i++) {
+    squares[i].style.backgroundColor = color;
   }
 }
