@@ -19,3 +19,39 @@ h2 {
   float: left;
   margin: 1.66%;
 }
+
+.mode {
+  margin: 0 auto;
+  text-align: center;
+  margin: 1rem auto;
+}
+
+button {
+  color: white;
+  width: 100px;
+  font: 2rem;
+  line-height: 3rem;
+  border-radius: 4px;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+}
+
+button:hover {
+  border-color: rgba(255, 255, 255, 1);
+}
+
+#novice {
+  background: rgb(28, 184, 65);
+}
+
+#normal {
+  background: rgb(66, 184, 221);
+}
+
+#expert {
+  background: rgb(223, 117, 20);
+}
+
+#hell {
+  background: rgb(202, 60, 60);
+}

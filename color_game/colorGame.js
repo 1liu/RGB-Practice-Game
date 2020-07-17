@@ -1,25 +1,46 @@
-const numOfSquare = 6;
-const colors = generateColorArray(numOfSquare);
+const novice = document.getElementById("novice");
+const normal = document.getElementById("normal");
+const expert = document.getElementById("expert");
+const hell = document.getElementById("hell");
+
+let colors = [];
+let squares = [];
+let targetColor = '';
+
 const container = document.querySelector(".container");
 const targetColorEl = document.getElementById("targetColor");
 const messageEl = document.getElementById("message")
-const targetColor = randomColor();
-targetColorEl.textContent = targetColor;
 
-for (let i = 0; i < numOfSquare; i++) {
-  let square = document.createElement("div");
-  square.className = "square";
-  container.appendChild(square);
-}
+novice.addEventListener("click", () => start(3));
+normal.addEventListener("click", () => start(6));
+expert.addEventListener("click", () => start(9));
+hell.addEventListener("click", () => start(12));
 
-const squares = document.querySelectorAll(".square");
-for (let i = 0; i < numOfSquare; i++) {
-  squares[i].style.backgroundColor = colors[i];
-  squares[i].addEventListener("click", check);
+//default mode
+start(3);
+
+function start(numOfSquare) {
+  resetGame();
+  colors = generateColorArray(numOfSquare);
+  targetColor = randomColor();
+  console.log(targetColor);
+  targetColorEl.textContent = targetColor;
+
+  container.innerHTML = '';
+  for (let i = 0; i < numOfSquare; i++) {
+    square = document.createElement("div");
+    square.className = "square";
+    container.appendChild(square);
+  }
+
+  squares = document.querySelectorAll(".square");
+  for (let i = 0; i < numOfSquare; i++) {
+    squares[i].style.backgroundColor = colors[i];
+    squares[i].addEventListener("click", check);
+  }
 }
 
 function check(event) {
-  console.log(event);
   if (this.style.backgroundColor === targetColor) {
     removeEventListener();
     changeAllColor(targetColor);
@@ -55,6 +76,9 @@ function generateColorArray(n) {
     let b = Math.floor(Math.random() * 256);
     array.push(`rgb(${r}, ${g}, ${b})`);
   }
-  console.log(array);
   return array;
+}
+
+function resetGame() {
+  messageEl.textContent = "Let Start The Game";
 }
